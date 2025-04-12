@@ -23,11 +23,14 @@ export const TodoList = () => {
     setTodos([...todos, newToDo]);
     setTodoValue('');
   }
+
+  const handleChangeInput = event => setTodoValue(event.target.value)
+
 // ----------------------------------------------
   return (
     <div>
       <div className='flex'>
-        <input value={todoVelue} onChange={event => setTodoValue(event.target.value)} className={s.input} />
+        <input value={todoVelue} onChange={handleChangeInput} className={s.input} />
         <button onClick={addTodo} className='btn border'>Add</button>
       </div>
       <ul className={s.list}>
