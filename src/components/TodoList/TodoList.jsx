@@ -4,7 +4,6 @@ import { TodoItem } from './TodoItem';
 import s from './TodoList.module.css';
 // ----------------------------------------------
 export const TodoList = () => {
-// ----------------------------------------------
   const [todos, setTodos] = useState(todosData);
   const [todoVelue, setTodoValue] = useState('');
 // ----------------------------------------------
@@ -25,7 +24,11 @@ export const TodoList = () => {
   }
 
   const handleChangeInput = event => setTodoValue(event.target.value)
-
+  // --------------------------------------------
+  const hangleTogleTodo = id => {
+    const newData = todos.map(item => (item.id === id ? {...item, completed: !item.completed} :item ));
+    setTodos(newData);
+  };
 // ----------------------------------------------
   return (
     <div>
@@ -35,7 +38,7 @@ export const TodoList = () => {
       </div>
       <ul className={s.list}>
         {todos.map(item => ( 
-          <TodoItem key={item.id} {...item} handleDeleteItem={handleDeleteItem} />
+          <TodoItem key={item.id} {...item} handleDeleteItem={handleDeleteItem} hangleTogleTodo={hangleTogleTodo} />
         ))}
       </ul>
     </div>
